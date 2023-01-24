@@ -1,0 +1,29 @@
+POST /api/posts
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "title": "포스트 제목",
+  "content": "포스트 내용",
+  "writer": "이준수",
+  "deleteYesOrNo": false
+}
+
+####
+
+GET /api/posts
+Host: localhost:8080
+Content-Type: application/json
+
+####
+
+PATCH /api/posts/999
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "title": "포스트 제목 수정",
+  "content": "포스트 내용 수정",
+  "writer": "이준수",
+  "deleteYesOrNo": false
+}
