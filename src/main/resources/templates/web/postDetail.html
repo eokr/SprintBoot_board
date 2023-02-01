@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>포스트 게시물</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <td colspan="1" th:text="'번호 : ' + ${postResponseDto.getId}"></td>
+        <td colspan="3" align="center" th:text="${postResponseDto.getTitle}"></td>
+    </tr>
+    <tr>
+        <td th:text="'작성자 : ' + ${postResponseDto.getWriter}"></td>
+        <td th:text="'조회수 : '  + ${postResponseDto.getViewCount}"></td>
+        <td th:text="'작성일시 : ' + ${postResponseDto.getCreatedDate}"></td>
+        <td th:text="'수정일시 : ' + ${postResponseDto.getModifiedDate}"></td>
+    </tr>
+    <tr>
+        <td colspan="4" th:text="${postResponseDto.getContent}"></td>
+    </tr>
+</table>
+</body>
+</html>

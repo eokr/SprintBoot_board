@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,6 +38,15 @@ public class PostServiceImpl {
         Sort sort = Sort.by(Sort.Direction.DESC, "id", "createdDate");
         List<Post> list = postRepository.findAll(sort);
         return list.stream().map(PostResponseDto::new).collect(Collectors.toList());
+    }
+
+    /**
+     * 포스트 id로 조회
+     */
+    public PostResponseDto findById(Long id) {
+        Optional<Post> post = postRepository.findById(id);
+        PostResponseDto postResponseDto = new PostResponseDto(post.get());
+        return postResponseDto;
     }
 
     /**

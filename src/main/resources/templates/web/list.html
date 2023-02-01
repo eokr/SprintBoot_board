@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>포스트 리스트 페이지</title>
+</head>
+<body>
+<table border="1">
+    <h1>포스트 리스트</h1>
+    </tr>
+        <th th:text="번호"></th>
+        <th th:text="제목"></th>
+        <th th:text="작성자"></th>
+        <th th:text="조회수"></th>
+        <th th:text="작성일시"></th>
+        <th th:text="수정일시"></th>
+        <tr th:each="postResponseDto : ${postResponseDtoList}">
+            <td th:text="${postResponseDto.getId}"></td>
+            <td>
+                <a th:href="|@{/post/postDetail(idPost=${postResponseDto.getId})}|">
+                    <span th:text="${postResponseDto.getTitle}">
+
+                    </span>
+                </a></td>
+            <td th:text="${postResponseDto.getWriter}"></td>
+            <td th:text="${postResponseDto.getViewCount}"></td>
+            <td th:text="${postResponseDto.getCreatedDate}"></td>
+            <td th:text="${postResponseDto.getModifiedDate}"></td><br/>
+    </tr>
+</table>
+
+</body>
+</html>
