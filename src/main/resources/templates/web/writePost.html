@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>포스트 작성 페이지</title>
+</head>
+<body>
+<form th:method="post" th:action="@{|/post/write|}">
+    <label th:for="name">제목 :</label>
+    <input type="text" id="title" name="title"/>
+    <br/>
+    <label th:for="content">내용 :</label>
+    <textarea cols="50" rows="10" id="content" name="content"></textarea>
+    <br/>
+    <label th:for="writer">글쓴이 :</label>
+    <input type="text" id="writer" name="writer"/>
+    <br/>
+    <input type="submit" value="등록하기"/>
+
+</form>
+</body>
+</html>
+
+<!--private String title;-->
+<!--private String content;-->
+<!--private String writer;-->

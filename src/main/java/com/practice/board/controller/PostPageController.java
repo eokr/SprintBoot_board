@@ -8,10 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -46,5 +43,22 @@ public class PostPageController {
         PostResponseDto postResponseDto = postServiceImpl.findById(idPost);
         model.addAttribute("postResponseDto", postResponseDto);
         return "postDetail";
+    }
+
+    /**
+     * 포스트 작성 페이지로 이동
+     */
+    @GetMapping("/write")
+    public String writePost() {
+        return "writePost";
+    }
+
+    /**
+     * 포스트 작성 후 등록
+     */
+    @PostMapping("/write")
+    public String submitWritePost(PostRequestDto postRequestDto){
+        postServiceImpl.save(postRequestDto);
+        return "redirect:/post/list";
     }
 }
