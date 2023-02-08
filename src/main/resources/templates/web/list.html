@@ -28,6 +28,38 @@
             <td th:text="${postResponseDto.getModifiedDate}"></td><br/>
     </tr>
 </table>
+<nav style="text-align: center; display:inline">
+    <ul>
+
+    </ul>
+</nav>
+
+<nav aria-label="Page navigation">
+    <ul class="pagination" style="">
+        <li class="page-item">
+            <a class="page-link" href="#" th:if="${paginationDto.startPage > 1}" th:href="@{/post/list(page=${paginationDto.startPage - 1})}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li class="page-item" th:each="page : ${#numbers.sequence(paginationDto.startPage,paginationDto.lastPage)}" th:class="${page == paginationDto.page} ? 'active' : ''">
+            <a class="page-link" th:href="@{/post/list(page=${page})}" th:text="${page}"></a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#" th:if="${paginationDto.lastPage < paginationDto.totalPage}" th:href="@{/post/list(page=${paginationDto.lastPage + 1})}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<!--paginationDto-->
+<!--private int page;           //현재 페이지 번호-->
+<!--private int totalPage;      //전체 페이지 갯수-->
+<!--private int recodeSize;     //페이지당 출력할 데이터 개수-->
+<!--private int startPage;      //화면 하단에 출력할 시작 페이지 번호-->
+<!--private int lastPage;       //화면 하단에 출력할 마지막 페이지 번호-->
+<!--private int pageSize;       //화면 하단에 출력할 페이지 사이즈-->
+
 <a th:href="|@{/post/write}|">포스트 작성</a>
 </body>
 </html>

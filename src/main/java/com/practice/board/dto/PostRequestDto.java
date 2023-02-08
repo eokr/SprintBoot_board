@@ -15,19 +15,13 @@ public class PostRequestDto {
     private String writer;
     private boolean deleteYesOrNo;
 
-    public PostRequestDto(String title, String content, String writer) {
-        this.title = title;
-        this.content = content;
-        this.writer = writer;
-        this.deleteYesOrNo = false;
-    }
     public Post toEntity() {
         return Post.builder()
                 .title(title)
                 .content(content)
                 .writer(writer)
                 .viewCount(0)
-                .deleteYesOrNo(deleteYesOrNo)
+                .deleteYesOrNo(false)
                 .build();
     }
 }

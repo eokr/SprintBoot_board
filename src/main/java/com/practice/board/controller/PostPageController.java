@@ -1,16 +1,17 @@
 package com.practice.board.controller;
 
+import com.practice.board.dto.PaginationDto;
 import com.practice.board.dto.PostRequestDto;
 import com.practice.board.dto.PostResponseDto;
 import com.practice.board.service.PostServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -23,8 +24,13 @@ public class PostPageController {
      * 포스트 리스트 페이지
      */
     @GetMapping("/list")
-    public String openPostList(Model model) {
-        List<PostResponseDto> postResponseDtoList = postServiceImpl.findAll();
+    public String openPostList(@RequestParam String page, Model model) {
+        int recodeSize = 2;
+        int pageSize = 3;
+        Page<PostResponseDto> postResponseDtoList = postServiceImpl.findPageByAll(page, recodeSize);
+        PaginationDto paginationDto = postServiceImpl.getPaginationDto(page, recodeSize, pageSize);
+
+        model.addAttribute("paginationDto", paginationDto);
         model.addAttribute("postResponseDtoList", postResponseDtoList);
         return "list";
     }
