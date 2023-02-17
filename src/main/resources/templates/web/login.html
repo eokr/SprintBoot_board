@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인 화면</title>
+    <h2>로그인 화면</h2>
+</head>
+<body>
+<form method="post" action="/loginProcess">
+    id: <input type="text" name="username" /><br />
+    password: <input type="password" name="password" /><br />
+    <br />
+    <input type="hidden" th:name="pageNumberToGo" th:value="1"/>
+    <!--  <input type="submit"/>-->
+    <button>로그인</button>
+</form>
+<a th:href="@{|/post/list?page=1|}">비회원 상태로 게시판 보기</a>
+</body>
+</html>

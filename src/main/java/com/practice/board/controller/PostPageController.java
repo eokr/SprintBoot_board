@@ -24,9 +24,9 @@ public class PostPageController {
      * 포스트 리스트 페이지
      */
     @GetMapping("/list")
-    public String openPostList(@RequestParam String page, Model model) {
-        int recodeSize = 2;
-        int pageSize = 3;
+    public String openPostList(@RequestParam(value = "page") String page, Model model) {
+        int recodeSize = 1;// 한 페이지당 보일 갯수
+        int pageSize = 3;// 페이지네이션 바에 표시할 숫자 갯수
         Page<PostResponseDto> postResponseDtoList = postServiceImpl.findPageByAll(page, recodeSize);
         PaginationDto paginationDto = postServiceImpl.getPaginationDto(page, recodeSize, pageSize);
 
@@ -65,6 +65,6 @@ public class PostPageController {
     @PostMapping("/write")
     public String submitWritePost(PostRequestDto postRequestDto){
         postServiceImpl.save(postRequestDto);
-        return "redirect:/post/list";
+        return "redirect:/post/list?page=1";
     }
 }

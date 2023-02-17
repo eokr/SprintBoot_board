@@ -56,7 +56,7 @@ public class PostServiceImpl {
 
         Page<Post> postPage = postRepository.findPageByAll(PageRequest.of(Integer.parseInt(page) - 1, recodeSize, sort));
 
-        return postPage.map(Post -> new PostResponseDto(Post));
+        return postPage.map(PostResponseDto::new);
     }
 
     /**
@@ -67,7 +67,7 @@ public class PostServiceImpl {
         paginationDto.setPage(Integer.parseInt(page));
         paginationDto.setTotalPage(findTotalPage(recodeSize));
         paginationDto.setRecodeSize(recodeSize);
-        paginationDto.setStartPage((Integer.parseInt(page)/(pageSize + 1))*pageSize + 1);
+        paginationDto.setStartPage(((Integer.parseInt(page) - 1)/pageSize)*pageSize + 1);
         paginationDto.setLastPage((paginationDto.getStartPage() + (pageSize - 1)) < paginationDto.getTotalPage() ? (paginationDto.getStartPage() + (pageSize - 1)) : paginationDto.getTotalPage());
         paginationDto.setPageSize(pageSize);
         return paginationDto;
