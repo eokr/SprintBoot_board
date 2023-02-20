@@ -20,5 +20,8 @@
         <td colspan="4" th:text="${postResponseDto.getContent}"></td>
     </tr>
 </table>
+<form action="/edit" method="get">
+    <button th:if="${postResponseDto.getWriter} == ${userNickName}">수정하기</button>
+</form>
 </body>
 </html>

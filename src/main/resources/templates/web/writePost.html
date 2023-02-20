@@ -13,7 +13,7 @@
     <textarea cols="50" rows="10" id="content" name="content"></textarea>
     <br/>
     <label th:for="writer">글쓴이 :</label>
-    <input type="text" id="writer" name="writer"/>
+    <input type="text" id="writer" name="writer" th:value="${userNickName}" readonly/>
     <br/>
     <input type="submit" value="등록하기"/>
 
