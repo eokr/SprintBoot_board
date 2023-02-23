@@ -28,8 +28,8 @@ public class PostPageController {
      */
     @GetMapping("/list")
     public String openPostList(@RequestParam(value = "page") String page, Model model) {
-        int recodeSize = 1;// 한 페이지당 보일 갯수
-        int pageSize = 3;// 페이지네이션 바에 표시할 숫자 갯수
+        int recodeSize = 5;// 한 페이지당 보일 갯수
+        int pageSize = 5;// 페이지네이션 바에 표시할 숫자 갯수
         Page<PostResponseDto> postResponseDtoList = postServiceImpl.findPageByAll(page, recodeSize);
         PaginationDto paginationDto = postServiceImpl.getPaginationDto(page, recodeSize, pageSize);
 
@@ -81,11 +81,20 @@ public class PostPageController {
 
     /**
      * 포스트 수정 페이지로 이동
-     * 작성 필요
      */
     @GetMapping("/edit")
-    public String editPost() {
-
+    public String editPost(@RequestParam("id") Long id, Model model) {
+        PostResponseDto postResponseDto = postServiceImpl.findById(id);
+        model.addAttribute(postResponseDto);
         return "editPost";
+    }
+
+    /**
+     * 포스트 수정 후 등록
+     */
+    @PostMapping("/edit")
+    public String submitEditPost(PostRequestDto postRequestDto, @RequestParam("id") Long id) {
+        postServiceImpl.update(id, postRequestDto);
+        return "redirect:/post/list?page=1";
     }
 }

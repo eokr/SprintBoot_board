@@ -20,8 +20,18 @@
         <td colspan="4" th:text="${postResponseDto.getContent}"></td>
     </tr>
 </table>
-<form action="/edit" method="get">
+<form th:action="@{/post/edit}" method="get">
+    <input type="hidden" name="id" th:value="${postResponseDto.getId}">
     <button th:if="${postResponseDto.getWriter} == ${userNickName}">수정하기</button>
 </form>
 </body>
 </html>
+
+<!--this.id = entity.getId();-->
+<!--this.title = entity.getTitle();-->
+<!--this.content = entity.getContent();-->
+<!--this.writer = entity.getWriter();-->
+<!--this.viewCount = entity.getViewCount();-->
+<!--this.deleteYesOrNo = entity.isDeleteYesOrNo();-->
+<!--this.createdDate = entity.getCreatedDate();-->
+<!--this.modifiedDate = entity.getModifiedDate();-->
